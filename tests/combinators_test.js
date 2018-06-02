@@ -12,6 +12,7 @@ const {
   omega,
   vireo,
   thrush,
+  lark,
   Y,
   zero,
   one,
@@ -175,6 +176,16 @@ async function runTests() {
     expect(`vireo ${index}`, result.name, vireo(x)(y)(equals).name);
   });
 
+  // lark test
+  [
+    [kestrel, kestrel, kestrel],
+    [kestrel, kite, kite],
+    [kite, kestrel, kestrel],
+    [kite, kite, kite]
+  ].forEach(([x, y, result], index) => {
+    expect(`lark ${index}`, result.name, lark(x)(y).name);
+  });
+
   // Y test
   const factorialBuilder = function(factorialFn) {
     return n => n < 2 ? 1 : n * factorialFn(n - 1);
@@ -314,9 +325,10 @@ function serialize(x) {
 }
 
 function expect(name, expectation, actual) {
-  console.log(`RUNNING: ${name}`);
-  if(serialize(expectation) === serialize(actual)) {console.log("TEST passed!");}
-  else
+  // console.log(`RUNNING: ${name}`);
+  if(serialize(expectation) === serialize(actual)) {
+    // console.log("TEST passed!");
+  } else
     console.warn(`TEST >> ${name} << failed!`),
     console.log("expectation:"),
     console.log(expectation),

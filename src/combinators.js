@@ -12,6 +12,7 @@ module.exports = {
   omega,
   vireo,
   thrush,
+  lark,
   Y,
   zero,
   one,
@@ -37,6 +38,7 @@ function mockingBird(x) {return x(x);}
 function omega() {return mockingBird(mockingBird);}
 function vireo(x) {return y => fn => fn(x)(y);}
 function thrush(fn) {return x => y => fn(y)(x);}
+function lark(x) {return y => x(y)(y);}
 function Y(fn) {return (x => x(x))(y => fn(v => (y(y))(v)));};
 
 
