@@ -29,10 +29,9 @@ const {
 // inspired by: http://matt.might.net/articles/js-church/
 function getNumber(n) {return n(x => x+1)(0);}
 function getNumeral(n) {
- return f => z => {
-   for (let i = 0; i < n; i++) z = f(z);
-   return z;
- }
+ return fn => function applyFn(numeral, count = 0) {
+   return count === n ? numeral : applyFn(fn(numeral), count + 1);
+ };
 }
 
 runTests();
@@ -272,7 +271,8 @@ async function runTests() {
   [
     [zero, 0],
     [one, 1],
-    [two, 2]
+    [two, 2],
+    [succ(two), 3]
   ].forEach(([n, result], index) => {
     expect(`getNumeral test ${index}`, getNumber(getNumeral(result)), getNumber(n));
   });
