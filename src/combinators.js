@@ -25,9 +25,9 @@ module.exports = {
   mult
 };
 
-function idiot(x) {return x;}
-function kestrel(x) {return y => x;}
-function kite(x) {return y => y;}
+function idiot(x) {return x; }
+function kestrel(x) {return y => x; }
+function kite(x) {return y => y; }
 function not(x) {return x(kite)(kestrel);}
 function and(x) {return y => x(y)(x);}
 function or(x) {return y => x(x)(y);}
@@ -43,13 +43,13 @@ function Y(fn) {return (x => x(x))(y => fn(v => (y(y))(v)));};
 
 
 // numbers
-function zero(f) {return x => x;}
+function zero(f) {return x => x; }
 function one(f) {return x => f(x);}
 function two(f) {return x => f(f(x));}
 function three(f) {return x => f(f(f(x)));}
 
 function succ(n) {return f => z => f(n(f)(z));}
-function plus(n) {return m => f => z => (n(f)(m(f)(z)));}
+function plus(x) {return y => x(succ)(y);}
 function pred(n) {return f => z => (n(g => (h => h(g(f)))))(() => z)(u => u);}
 function sub(n) {return m => (m(pred))(n);}
 function mult(n) {return m => f => z => (n(m(f))(z));}
