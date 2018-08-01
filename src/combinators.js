@@ -34,6 +34,7 @@ function or(x) {return y => x(x)(y);}
 function xor(x) {return y => x(not(y))(y);}
 function equals(x) {return y => x(y)(not(y));}
 function conditional(p) {return x => y => p(x)(y);}
+function blueBird(x) {return y => z => x(y(z));}
 function mockingBird(x) {return x(x);}
 function omega() {return mockingBird(mockingBird);}
 function vireo(x) {return y => fn => fn(x)(y);}
@@ -52,4 +53,4 @@ function succ(n) {return f => z => f(n(f)(z));}
 function plus(x) {return y => x(succ)(y);}
 function pred(n) {return f => z => (n(g => (h => h(g(f)))))(() => z)(u => u);}
 function sub(n) {return m => (m(pred))(n);}
-function mult(n) {return m => f => z => (n(m(f))(z));}
+function mult(n) {return blueBird(n);}
